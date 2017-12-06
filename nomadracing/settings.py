@@ -25,7 +25,7 @@ SECRET_KEY = 'xpfmg4g@m+dgvz((s)kzlg8#&51cqjdy^@@ugp1h8goyk+^$c('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['peaceful-stream-21988.herokuapp.com']
 
 
 # Application definition
