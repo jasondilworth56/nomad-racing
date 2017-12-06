@@ -18,10 +18,10 @@ class TeamMember(models.Model):
 
 #An Article on the blog/news
 class Article(models.Model):
-    title = models.CharField()
+    title = models.CharField(max_length=255)
     image = models.FileField()
     content = models.TextField()
-    category = models.CharField() #TODO: Add categories class, this should be a foreign field of that
+    category = models.CharField(max_length=255) #TODO: Add categories class, this should be a foreign field of that
     timestamp = models.DateTimeField(auto_now=True)
     team_members = models.ManyToManyField(TeamMember) #for tagging team members
     
@@ -34,11 +34,11 @@ class Media(models.Model):
 class Result(models.Model):
     team_member = models.ForeignKey(TeamMember, on_delete=models.CASCADE)
     timestamp = models.DateTimeField()
-    series = models.CharField()
-    circuit = models.CharField()
-    race_type = models.CharField()
-    start_pos = models.CharField()
-    finish_pos = models.CharField()
+    series = models.CharField(max_length=60)
+    circuit = models.CharField(max_length=128)
+    race_type = models.CharField(max_length=30)
+    start_pos = models.IntegerField()
+    finish_pos = models.IntegerField()
     iRating_change = models.IntegerField()
     
 class Progress(models.Model):

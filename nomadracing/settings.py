@@ -25,12 +25,13 @@ SECRET_KEY = 'xpfmg4g@m+dgvz((s)kzlg8#&51cqjdy^@@ugp1h8goyk+^$c('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['peaceful-stream-21988.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'peaceful-stream-21988.herokuapp.com']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'nomadmain.apps.NomadmainConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
