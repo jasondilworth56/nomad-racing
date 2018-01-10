@@ -1,34 +1,47 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
-# Create your models here.
-
-
-#A member of the NOMAD team
+# A member of the NOMAD team
 class TeamMember(models.Model):
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
-    iRacing_number = models.CharField(max_length=10)
-    profile_photo = models.FileField()
-    date_of_birth = models.DateField()
-    biography = models.TextField()
-    twitch_channel = models.CharField(max_length=30)
-    youtube_channel = models.CharField(max_length=30)
-    personal_site = models.CharField(max_length=255)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=30, null=True)
+    last_name = models.CharField(max_length=30, null=True)
+    iRacing_number = models.CharField(max_length=10, null=True, blank=True)
+    profile_photo = models.ImageField(null=True, blank=True)
+    date_of_birth = models.DateField(null=True, blank=True)
+    biography = models.TextField(null=True, blank=True)
+    twitch_channel = models.CharField(max_length=30, null=True, blank=True)
+    youtube_channel = models.CharField(max_length=30, null=True, blank=True)
+    personal_site = models.CharField(max_length=255, null=True, blank=True)
+    team_member = models.BooleanField(default=False)
 
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        TeamMember.objects.create(user=instance)
 
-#An Article on the blog/news
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.teammember.save()
+
+class ArticleCategory(models.Model):
+    name = models.CharField(max_length=60)
+
+# An Article on the blog/news
 class Article(models.Model):
     title = models.CharField(max_length=255)
-    image = models.FileField()
+    image = models.ImageField(null=True, blank=True)
     content = models.TextField()
-    category = models.CharField(max_length=255) #TODO: Add categories class, this should be a foreign field of that
+    category = models.ForeignKey(ArticleCategory, on_delete=models.CASCADE) #TODO: Add categories class, this should be a foreign field of that
     timestamp = models.DateTimeField(auto_now=True)
-    team_members = models.ManyToManyField(TeamMember) #for tagging team members
+    team_members = models.ManyToManyField(TeamMember) #for tagging team members in articles
     
-#A piece of media
+# A piece of media
 class Media(models.Model):
     filename = models.FileField()
-    team_members = models.ManyToManyField(TeamMember) #for tagging team members
+    team_members = models.ManyToManyField(TeamMember) #for tagging team members in media
     
 # A result of a team member
 class Result(models.Model):
@@ -41,6 +54,7 @@ class Result(models.Model):
     finish_pos = models.IntegerField()
     iRating_change = models.IntegerField()
     
+# A store of iRatings of each TeamMember each day
 class Progress(models.Model):
     team_member = models.ForeignKey(TeamMember, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now=True)
