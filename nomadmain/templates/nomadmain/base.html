@@ -1,0 +1,59 @@
+{% load static %}
+
+<html>
+<head>
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Michroma" rel="stylesheet">
+    <link href="{% static 'nomadmain/css/style.css' %}" rel="stylesheet">
+    <title>{% block title %}NOMAD Sim Racing{% endblock title %}</title>
+</head>
+<body>
+    <header>
+        <div id="logo"><a href=""><img src="{% static 'nomadmain/images/square-transparent-micro.png' %}" class="logo-image"> <span class="logo-text"><strong>&nbsp;NOMAD</strong> <em>Sim Racing</em></span></a></div>
+        <div id="header-middle"></div>
+        <div id="nav-toggle">&#9776;</div>
+    </header>
+    {% block content %}
+    <div id="hero-container" class="row hero-row">
+        <video poster="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/polina.jpg" id="bgvid" playsinline autoplay muted loop>
+            <source src="{% static 'nomadmain/images/home-background.webm' %}" type="video/webm">
+        </video>
+        <div id="hero-message" class="homepage-section"><h1>WE<br> ARE<br> NOMAD</h1></div>
+    </div>
+    <div id="team-container" class="row main-row">
+        <div id="team-left-arrow" class="arrow arrow-left"></div>
+        <div id="team-slider" class="homepage-section">
+            {% for user in users %}
+            <div id="tt{{ forloop.counter0 }}" class="team-member-title">{{ user.first_name }} {{user.last_name }}</div>
+            <div id="tb{{ forloop.counter0 }}" class="team-member-body"><img src="{% if user.teammember.profile_photo %}{{ user.teammember.profile_photo.url }} {% else %} {% static 'nomadmain/images/square-transparent-micro.png' %}{% endif %}" alt="{{ team_member.first_name }} {{team_member.last_name }}" /></div>
+            {% endfor %}
+        </div>
+        <div id="team-right-arrow" class="arrow arrow-right"></div>
+        <h1 id="team-title">MEET THE TEAM</h1>
+    </div>
+    {% if live_stream != None %}
+    <div id="live-container" class="row main-row">
+        <h1 id="live-title">LIVE NOW</h1>
+        <div id="live-preview" class="homepage-section">
+            <div class="videoWrapper">
+                <iframe src="{{live_stream.embed}}" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
+            </div>   
+        </div>
+    </div>
+    {% endif %}
+    <div id="news-container" class="row main-row">
+        <h1>LATEST NEWS</h1>
+        <div id="news-wrapper">
+            {% for article in articles %}
+            <div class="news-article">
+                <img src="{{ article.image.url }}" alt="{{ article.title }}" />
+                <h5>{{ article.title }}</h3>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endblock content %}
+</body>
+
+

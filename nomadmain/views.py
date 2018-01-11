@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from nomadmain.models import Article, Media, TeamMember
+from django.contrib.auth.models import User
 
 import requests, random
 
@@ -7,12 +8,18 @@ TWITCH_CLIENT_ID = "fz19mrp6fjwd6qd7cueailm1qqq6za"
 YOUTUBE_CLIENT_ID = "AIzaSyC8C1rkKpcwRP6yGRRSmHTXxiMP8LSJR3E"
 
 def index(request):
-    team_members = TeamMember.objects.all()
+    users = User.objects.all()
     articles = Article.objects.all()[:3]
     
     
-    context = { 'team_members': team_members, 'live_stream': checkStreams(), 'articles': articles }
-    return render(request, 'nomadmain/index.html', context)
+    context = { 'users': users, 'live_stream': checkStreams(), 'articles': articles }
+    return render(request, 'nomadmain/base.html', context)
+
+def article(request, article_id):
+    article = get_object_or_404(Article, pk=article_id)
+    context = { 'article': article }
+    return render(request, 'nomadmain/base_articles.html', context)
+        
 
 def checkStreams():
     team_members = TeamMember.objects.all()

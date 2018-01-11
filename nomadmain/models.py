@@ -6,8 +6,6 @@ from django.dispatch import receiver
 # A member of the NOMAD team
 class TeamMember(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=30, null=True)
-    last_name = models.CharField(max_length=30, null=True)
     iRacing_number = models.CharField(max_length=10, null=True, blank=True)
     profile_photo = models.ImageField(null=True, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
@@ -16,6 +14,13 @@ class TeamMember(models.Model):
     youtube_channel = models.CharField(max_length=30, null=True, blank=True)
     personal_site = models.CharField(max_length=255, null=True, blank=True)
     team_member = models.BooleanField(default=False)
+    
+    def is_team(self):
+        return self.team_member
+    
+    def __str__(self):
+        return self.user.first_name+" "+self.user.last_name
+    
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
@@ -28,6 +33,12 @@ def save_user_profile(sender, instance, **kwargs):
 
 class ArticleCategory(models.Model):
     name = models.CharField(max_length=60)
+    
+    def __str__(self):
+        return self.name
+    
+    def __repr__(self):
+        return self.name
 
 # An Article on the blog/news
 class Article(models.Model):
@@ -37,6 +48,9 @@ class Article(models.Model):
     category = models.ForeignKey(ArticleCategory, on_delete=models.CASCADE) #TODO: Add categories class, this should be a foreign field of that
     timestamp = models.DateTimeField(auto_now=True)
     team_members = models.ManyToManyField(TeamMember) #for tagging team members in articles
+    
+    def __str__(self):
+        return self.title
     
 # A piece of media
 class Media(models.Model):

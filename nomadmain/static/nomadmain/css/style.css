@@ -1,0 +1,266 @@
+
+body {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 60px 100%;
+    grid-column-gap: 1em;
+    
+    margin: 0;
+
+    font-family: 'Open Sans', sans-serif;
+    font-size: 2em;
+}
+    
+.arrow {
+    align-self: center;
+    
+    width: 0;
+    height: 0;
+    border-bottom: 1em solid transparent;
+    border-top: 1em solid transparent;
+    font-size: 2em;
+    line-height: 0;
+}
+
+.arrow-left {
+    justify-self: right;
+    border-right: 1em solid rgba(255,255,255,0.9); 
+}
+
+.arrow-right {
+    justify-self: left; 
+    border-left: 1em solid rgba(255,255,255,0.9); /* bottom, add background color here */
+}
+
+header, h1 {
+    font-family: 'Michroma';
+}
+
+header {
+    display: grid;
+    grid-gap: 20px;
+    
+    padding: 0 20px;
+    
+    grid-template-columns: repeat(12, 1fr);
+
+    align-items: center;
+    justify-items: center;
+    
+    background-color: #194C5F;
+    color: #FFD825;
+    line-height: 1em; 
+}
+
+#hero-container video { 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    transform: translateX(-50%) translateY(-50%);
+    background: url('//demosthenes.info/assets/images/polina.jpg') no-repeat;
+    background-size: cover;
+    transition: 1s opacity;
+}
+        
+#hero-message {
+    grid-row: 2 / 3;
+    grid-column: 2 / 7;
+
+    padding: 2em; 
+    
+    background-color: rgba(0,0,0,0.5);
+    color: #fff;
+    vertical-align: middle;
+    
+}
+
+.hero-row {
+    display: grid;
+    grid-template-rows: 1fr 3fr 1fr;
+    grid-template-columns: repeat(12, 1fr);
+    align-items: center;
+    
+    background-color: rgba(0,0,0,0.5);
+    color: #fff;
+}
+
+.homepage-section {
+    border-radius: 0.5em;
+    padding: 0.5em;
+    color: #807A7A;
+}
+
+#live-preview {
+    grid-column: 5 / 12;
+    grid-row: 2 / 5;
+    
+    background-color: rgba(255,255,255,0.8);
+}
+ 
+#live-title {
+    grid-column: 2 / 5;
+    grid-row: 2 / 5;
+    justify-self: left;
+    text-align:left;
+}
+
+#logo {
+    grid-column: 1/10;
+    
+    justify-self: left;
+    align-items: center;
+}
+
+#logo a {
+    text-decoration: none;
+    color: #FFD825;
+}
+
+.logo-image {
+    float: left;
+}
+
+.logo-text {
+    text-decoration: none;
+    line-height: 1.5em;
+    padding-left: 20px;
+}
+
+.main-row {
+    display: grid;
+    grid: auto / repeat(12, minmax(0, 1fr));
+    grid-gap: 20px; 
+    padding: 100px 20px; 
+    
+}
+
+.main-row:nth-of-type(odd) {
+    background-color: #194C5F;
+    color: #FFD825;
+}
+
+.main-row:nth-of-type(even) {
+    background-color: #FFD825;
+    color: #194C5F;
+}
+
+.main-row h1 {
+    font-size: 2.5em;
+}
+
+#nav-toggle {
+    grid-column: 12 / span 1;
+}
+
+.news-article {
+    grid-column: auto / span 4;
+    
+    color: #fff; 
+    min-height: 4em;
+    position: relative;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.news-article h5 {
+    margin: 0.5em;
+}
+.news-article img {
+    width: 100%; 
+}
+
+.news-article .news-title {
+    background-color: rgba(0,0,0,0.5);
+    color: #fff;
+    position: absolute;
+    bottom: 0px;
+    width: calc(100% - 2em);
+    padding: 0 1em; 
+}
+
+#news-container h1 {
+    grid-column: 2 / span 10;
+    margin-top: 0px;
+}
+
+#news-wrapper {
+    grid-column: 2 / span 10;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 20px; 
+}
+
+#team-container {
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 20px;
+        
+}
+
+#team-container .arrow-left {
+    grid-column: 1 / span 1;
+}
+
+#team-container .arrow-right {
+    grid-column: 8 / span 1;
+}
+
+.team-member-body {
+    background-color: #FFD825;
+    
+    grid-column: auto / span 6;
+    grid-row: 1 / 2;
+}
+
+.team-member-body img {
+    max-width: 100%;
+}
+
+.team-member-title {
+    text-align: center;
+    
+    grid-column: auto / span 6;
+    grid-row: 2 / 3;
+}
+
+#team-slider {
+    display: grid;
+    grid-gap: 20px;
+    padding: 20px; 
+    
+    grid-column: 2 / span 6;
+    
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 5fr 1fr;
+    
+    background-color: rgba(255,255,255,0.9);
+}
+
+#team-title {
+    grid-column: 9 / 12;
+    justify-self: right;
+    text-align: right
+}
+
+.videoWrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+}
+.videoWrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@media screen and (max-device-width: 800px) {
+    #hero-container { background: url(https://thenewcode.com/assets/images/polina.jpg) #000 no-repeat center center fixed; }
+    #bgvid { display: none; }
+}
+

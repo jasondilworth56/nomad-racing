@@ -1,0 +1,12 @@
+{% extends 'nomadmain/base.html' %}
+
+{% block title %}{{ article.title }} {% endblock title %}
+
+{% block content %}
+
+<h1>{{ article.title }}</h1>
+<img src="{{ article.image.url }}" alt="{{article.title}}" />
+{{ article.content|escape|linebreaks }}
+
+{% endblock content %}
+
