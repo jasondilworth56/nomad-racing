@@ -77,7 +77,6 @@ WSGI_APPLICATION = 'nomadracing.wsgi.application'
 
 print (dj_database_url).config()
 DATABASES = {
-    'default': dj_database_url.config()
     # 'default': {
     #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
     #     'NAME': 'd8i2teivhnbh0e',
