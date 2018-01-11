@@ -75,16 +75,16 @@ WSGI_APPLICATION = 'nomadracing.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-print (dj_database_url).config()
+#print (dj_database_url).config()
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #     'NAME': 'd8i2teivhnbh0e',
-    #     'USER': 'veteqoravyjgfj',
-    #     'PASSWORD': '10aa662b7f55a88c0f76256ef161d9691e910c1e7831e60107424e857b075cec',
-    #     'HOST': 'ec2-184-73-206-155.compute-1.amazonaws.com',
-    #     'PORT': '5432',
-    # }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd8i2teivhnbh0e',
+        'USER': 'veteqoravyjgfj',
+        'PASSWORD': '10aa662b7f55a88c0f76256ef161d9691e910c1e7831e60107424e857b075cec',
+        'HOST': 'ec2-184-73-206-155.compute-1.amazonaws.com',
+        'PORT': '5432',
+    }
     # 'default': {
     #     'ENGINE': 'django.db.backends.sqlite3',
     #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
