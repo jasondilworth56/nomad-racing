@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from nomadmain.models import Article, Media, TeamMember
 from django.contrib.auth.models import User
+from django.http import HttpResponse
 
 import requests, random
 
@@ -22,7 +23,8 @@ def index(request):
 
 def article_list(request):
     articles = Article.objects.all()
-    context = { 'articles': articles, }
+    main_image = articles[0].image
+    context = { 'articles': articles, 'main_image': main_image.url,}
     return render(request, 'nomadmain/base_articles.html', context)
 
 def article(request, slug):
@@ -48,13 +50,13 @@ def team_member(request, slug):
     return render(request, 'nomadmain/base_team_member.html', context)
     
 def events(request):
-    return render("Events", 'nomadmain/base.html')
+    return HttpResponse("Events")
 
 def live_now(request):
-    return render("Live Now", 'nomadmain/base.html')
+    return HttpResponse("Live Now")
 
 def result_list(request):
-    return render("Results", 'nomadmain/base.html')
+    return HttpResponse("Results")
         
 
 def checkStreams():

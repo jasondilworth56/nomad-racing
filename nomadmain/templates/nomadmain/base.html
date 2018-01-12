@@ -73,6 +73,13 @@
     </div>
     {% endblock content %}
     
+    <footer>
+        <div class="logo">
+            <a href="{% url 'index' %}"><img src="{% static 'nomadmain/images/square-transparent-micro.png' %}" class="logo-image">
+            <span class="logo-text"><strong>&nbsp;NOMAD</strong> <em>Sim Racing</em></span></a>
+        </div>
+    </footer>
+    
     <script>
         $( document ).ready(function() {
             $('#nav-toggle').click(function() {

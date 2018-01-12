@@ -3,15 +3,31 @@
 {% block title %}{{ article.title }} {% endblock title %}
 
 {% block content %}
-<div class="article">
-    <div class="article-header" style="background-image: url('{% if article.image %} {{article.image.url}} {% endif %}'); background-size: cover; background-position: 50%; min-height: 20%; ">
-        <h1>{{ article.title }}</h1>
+<div class="content">
+    <div class="content-header">
+        <div id="content-image" style="background-image: url('{% if article.image %} {{ article.image.url }} {% endif %}'); background-size: cover; background-position: 50%; "></div>
+        <div id="content-meta-wrapper">
+            
+                
+           
+            <h1>{{ article.title }}</h1>
+            <div id="content-meta-inner">
+            <p id="last_updated" class="article-meta"><strong>Last Updated</strong>: {{ article.timestamp|date:"l dS F Y" }}</p>
+            {% if article.team_members.all|length != 0 %}<p id="includes_team" class="article-meta"><strong>In this article</strong>: {{ article.team_members.all|join:", " }}</p>{% endif %}
+             </div>
+        </div>
+        <div id="social-block">
+            <div class="share-fb"></div>
+            <div class="share-twitter"></div>
+            <div class="share-instagram"></div>
+        </div>
+        
     </div>
     <div class="article-content">
         {{ article.content|safe|linebreaks }}
     </div>
     <div class="article-meta">
-        {% if article.team_members.all|length != 0 %}In this article: {{ article.team_members.all|join:", " }}{% endif %}
+        
         
     </div>
 </div>

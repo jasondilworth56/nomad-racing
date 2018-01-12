@@ -1,12 +1,30 @@
 {% extends 'nomadmain/base.html' %}
 
-{% block title %}{{ article.title }} {% endblock title %}
+{% block title %} Blog | NOMAD Sim Racing {% endblock title %}
 
 {% block content %}
-<h1>NOMAD Articles</h1>
-{% for article in articles %}
-<h2>{{article.title}}</h2>
-<p>{{ article.content|truncatechars:60 }} <a href = "{% url 'article' article.slug %}">Read More</a></p>
-{% endfor %}
+<div class="content">
+    <div class="content-header">
+        <div id="content-image" style="background-image: url('{% if main_image %}{{ main_image }}{% endif %}'); background-size: cover; background-position: 50%;"></div>
+        <div id="content-meta-wrapper">
+            <h1>Blog</h1>
+        </div>
+    </div>
+    <div id="article-list">
+        {% for article in articles %}
+        
+        <a class="article-card" href = "{% url 'article' article.slug %}">
+            <div class="article-card-body" style="{% if article.image %}background-image: url('{{ article.image.url }}'); {% endif %} background-size: cover; background-position: 50%;">
+                
+                <h2 class="news-title">{{ article.title }}</h2>
+            </div>
+            
+            <p>{{ article.content|truncatechars:60 }}</p>
+        </a>
+        
+        {% endfor %}
+    </div>
+</div>
+
 {% endblock content %}
 
