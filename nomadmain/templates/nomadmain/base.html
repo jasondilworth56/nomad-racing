@@ -25,12 +25,12 @@
         <div id="team-left-arrow" class="arrow arrow-left"></div>
         <div id="team-slider" class="homepage-section">
             {% for user in users %}
-            <div id="tt{{ forloop.counter0 }}" class="team-member-title">{{ user.first_name }} {{user.last_name }}</div>
-            <div id="tb{{ forloop.counter0 }}" class="team-member-body"><img src="{% if user.teammember.profile_photo %}{{ user.teammember.profile_photo.url }} {% else %} {% static 'nomadmain/images/square-transparent-micro.png' %}{% endif %}" alt="{{ team_member.first_name }} {{team_member.last_name }}" /></div>
+            <a href = "{% url 'team_member' user.teammember.slug %}" id="tt{{ forloop.counter0 }}" class="team-member-title">{{ user.first_name }} {{user.last_name }}</a>
+            <a href = "{% url 'team_member' user.teammember.slug %}" id="tb{{ forloop.counter0 }}" class="team-member-body"><img src="{% if user.teammember.profile_photo %}{{ user.teammember.profile_photo.url }} {% else %} {% static 'nomadmain/images/square-transparent-micro.png' %}{% endif %}" alt="{{ team_member.first_name }} {{team_member.last_name }}" /></a>
             {% endfor %}
         </div>
         <div id="team-right-arrow" class="arrow arrow-right"></div>
-        <h1 id="team-title">MEET THE TEAM</h1>
+        <h1 id="team-title"><a href="{% url 'team_list' %}">THE TEAM</a></h1>
     </div>
     {% if live_stream != None %}
     <div id="live-container" class="row main-row">
@@ -43,13 +43,17 @@
     </div>
     {% endif %}
     <div id="news-container" class="row main-row">
-        <h1>LATEST NEWS</h1>
+        <h1><a href="{% url 'article_list' %}">LATEST NEWS</a></h1>
         <div id="news-wrapper">
             {% for article in articles %}
+            
             <div class="news-article">
-                <a href = "{% url 'article' article.slug %}">{% if article.image %}<img src="{{ article.image.url }}" alt="{{ article.title }}" />{% endif %}
-                <h5 class="news-title">{{ article.title }}</h5></a>
+                <a href = "{% url 'article' article.slug %}">
+                {% if article.image %}<img src="{{ article.image.url }}" alt="{{ article.title }}" />{% endif %}
+                <h5 class="news-title">{{ article.title }}</h5>
+                </a>
             </div>
+            
             {% endfor %}
         </div>
     </div>

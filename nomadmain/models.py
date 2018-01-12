@@ -16,13 +16,21 @@ class TeamMember(models.Model):
     youtube_channel = models.CharField(max_length=30, null=True, blank=True)
     personal_site = models.CharField(max_length=255, null=True, blank=True)
     team_member = models.BooleanField(default=False)
+    slug = models.SlugField(max_length=60, blank=True)
     
+    def get_full_name(self):
+        return self.user.get_full_name()
+        
     def is_team(self):
         return self.team_member
     
     def __str__(self):
         return self.user.first_name+" "+self.user.last_name
     
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.get_full_name())
+
+        super(TeamMember, self).save(*args, **kwargs)
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):

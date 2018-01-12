@@ -8,9 +8,14 @@ TWITCH_CLIENT_ID = "fz19mrp6fjwd6qd7cueailm1qqq6za"
 YOUTUBE_CLIENT_ID = "AIzaSyC8C1rkKpcwRP6yGRRSmHTXxiMP8LSJR3E"
 
 def index(request):
-    users = User.objects.all()
-    articles = Article.objects.all()[:3]
+    all_users = User.objects.all()
+    users = []
     
+    for user in all_users:
+        if user.teammember.is_team():
+            users.append(user)
+    
+    articles = Article.objects.all()[:3]
     
     context = { 'users': users, 'live_stream': checkStreams(), 'articles': articles }
     return render(request, 'nomadmain/base.html', context)
@@ -34,6 +39,14 @@ def team_list(request):
     
     context = { 'team_members': team_members }
     return render(request, 'nomadmain/base_team_members.html', context)
+
+def team_member(request, slug):
+    team_member = get_object_or_404(TeamMember, slug=slug)
+    user = team_member.user
+    
+    context = {'user':user}
+    return render(request, 'nomadmain/base_team_member.html', context)
+    
     
         
 

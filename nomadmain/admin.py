@@ -34,6 +34,7 @@ class TeamMemberInline(admin.StackedInline):
     can_delete = False
     verbose_name_plural = 'Team Member'
     fk_name = 'user'
+    
 
  
 class CustomUserAdmin(UserAdmin):

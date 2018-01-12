@@ -10,6 +10,11 @@ body {
     font-family: 'Open Sans', sans-serif;
     font-size: 2em;
 }
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
     
 .arrow {
     align-self: center;
