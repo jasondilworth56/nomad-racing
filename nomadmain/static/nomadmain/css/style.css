@@ -73,8 +73,16 @@ header, h1 {
 header {
     position: sticky;
     top: 0;
+    
+    background-color: #194C5F;
+    color: #FFD825;
+    line-height: 1em; 
+}
+
+#header-stuff {
+    width: 100%;
     display: grid;
-    grid-gap: 20px;
+    grid-gap: 0px 20px;
     
     padding: 0 20px;
     
@@ -82,10 +90,6 @@ header {
 
     align-items: center;
     justify-items: center;
-    
-    background-color: #194C5F;
-    color: #FFD825;
-    line-height: 1em; 
 }
 
 #hero-container video { 
@@ -189,8 +193,45 @@ header {
     font-size: 2.5em;
 }
 
+nav {
+    background-color: #194C5F;
+    
+    grid-column: 1 / span 12;
+    
+    padding: 20px;
+    
+    display: none;
+}
+
+nav ul {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 20px;
+    margin: 0px;
+}
+
+nav li {
+    grid-column: auto / span 1;
+    justify-self: stretch;
+    align-self: stretch;
+    text-align: center;
+    list-style: none;
+    
+}
+
+nav a {
+    padding: 20px;
+}
+
+nav a:hover {
+    background-color: #FFD825;
+    color: #194C5F;
+}
+
 #nav-toggle {
     grid-column: 12 / span 1;
+    
+    cursor: pointer;
 }
 
 .news-article {

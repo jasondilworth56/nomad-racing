@@ -47,7 +47,14 @@ def team_member(request, slug):
     context = {'user':user}
     return render(request, 'nomadmain/base_team_member.html', context)
     
-    
+def events(request):
+    return render("Events", 'nomadmain/base.html')
+
+def live_now(request):
+    return render("Live Now", 'nomadmain/base.html')
+
+def result_list(request):
+    return render("Results", 'nomadmain/base.html')
         
 
 def checkStreams():

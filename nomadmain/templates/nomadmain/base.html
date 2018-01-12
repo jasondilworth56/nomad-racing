@@ -5,15 +5,29 @@
     
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Michroma" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href="{% static 'nomadmain/css/style.css' %}" rel="stylesheet">
     <title>{% block title %}NOMAD Sim Racing{% endblock title %}</title>
 </head>
 <body>
     <header>
-        <div id="logo"><a href=""><img src="{% static 'nomadmain/images/square-transparent-micro.png' %}" class="logo-image"> <span class="logo-text"><strong>&nbsp;NOMAD</strong> <em>Sim Racing</em></span></a></div>
-        <div id="header-middle"></div>
-        <div id="nav-toggle">&#9776;</div>
+        <div id="header-stuff">
+            <div id="logo"><a href="{% url 'index' %}"><img src="{% static 'nomadmain/images/square-transparent-micro.png' %}" class="logo-image"> <span class="logo-text"><strong>&nbsp;NOMAD</strong> <em>Sim Racing</em></span></a></div>
+            <div id="header-middle"></div>
+            <div id="nav-toggle">&#9776;</div>
+        </div>
+        <nav>
+            <ul>
+                <a href="{% url 'index' %}"><li>Home</li></a>
+                <a href="{% url 'team_list' %}"><li>Team</li></a>
+                <a href="{% url 'result_list' %}"><li>Results</li></a>
+                <a href="{% url 'article_list' %}"><li>Blog</li></a>
+                <a href="{% url 'live_now' %}"><li>Live Now</li></a>
+                <a href="{% url 'events' %}"><li>Events</li></a>
+            </ul>
+        </nav>
     </header>
+
     {% block content %}
     <div id="hero-container" class="row hero-row">
         <video poster="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/polina.jpg" id="bgvid" playsinline autoplay muted loop>
@@ -58,6 +72,14 @@
         </div>
     </div>
     {% endblock content %}
+    
+    <script>
+        $( document ).ready(function() {
+            $('#nav-toggle').click(function() {
+                $('nav').toggle();
+            });
+        });
+    </script>
 </body>
 
 
