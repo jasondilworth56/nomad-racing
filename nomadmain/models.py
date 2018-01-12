@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.template.defaultfilters import slugify
+
 
 # A member of the NOMAD team
 class TeamMember(models.Model):
@@ -37,25 +39,33 @@ class ArticleCategory(models.Model):
     def __str__(self):
         return self.name
     
-    def __repr__(self):
-        return self.name
-
+# A piece of media
+class Media(models.Model):
+    filename = models.FileField()
+    team_members = models.ManyToManyField(TeamMember) #for tagging team members in media
+    
+    def __str__(self):
+        return self.filename.name
+    
 # An Article on the blog/news
 class Article(models.Model):
+    slug = models.SlugField(max_length=60, blank=True)
     title = models.CharField(max_length=255)
     image = models.ImageField(null=True, blank=True)
     content = models.TextField()
     category = models.ForeignKey(ArticleCategory, on_delete=models.CASCADE) #TODO: Add categories class, this should be a foreign field of that
     timestamp = models.DateTimeField(auto_now=True)
-    team_members = models.ManyToManyField(TeamMember) #for tagging team members in articles
+    team_members = models.ManyToManyField(TeamMember, blank=True) #for tagging team members in articles
     
     def __str__(self):
         return self.title
     
-# A piece of media
-class Media(models.Model):
-    filename = models.FileField()
-    team_members = models.ManyToManyField(TeamMember) #for tagging team members in media
+    def save(self, *args, **kwargs):
+        if not self.id:
+            # Newly created object, so set slug
+            self.slug = slugify(self.title)
+
+        super(Article, self).save(*args, **kwargs)
     
 # A result of a team member
 class Result(models.Model):

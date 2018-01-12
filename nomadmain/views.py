@@ -15,10 +15,26 @@ def index(request):
     context = { 'users': users, 'live_stream': checkStreams(), 'articles': articles }
     return render(request, 'nomadmain/base.html', context)
 
-def article(request, article_id):
-    article = get_object_or_404(Article, pk=article_id)
-    context = { 'article': article }
+def article_list(request):
+    articles = Article.objects.all()
+    context = { 'articles': articles, }
     return render(request, 'nomadmain/base_articles.html', context)
+
+def article(request, slug):
+    article = get_object_or_404(Article, slug=slug)
+    context = { 'article': article }
+    return render(request, 'nomadmain/base_article.html', context)
+
+def team_list(request):
+    users = User.objects.all()
+    team_members = []
+    for user in users:
+        if user.teammember.team_member == True:
+            team_members.append(user)
+    
+    context = { 'team_members': team_members }
+    return render(request, 'nomadmain/base_team_members.html', context)
+    
         
 
 def checkStreams():

@@ -2,7 +2,8 @@ from django.contrib import admin
 from .models import TeamMember, Article, Media, Result, Progress, ArticleCategory
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
-from .models import TeamMember
+from django.forms import TextInput, Textarea, SelectMultiple
+from django.db import models
 
 admin.site.register([Media, Result])
 
@@ -16,6 +17,14 @@ class ArticleAdmin(admin.ModelAdmin):
     get_category.short_description = "Category"
     
     list_filter = ['timestamp']
+    
+    formfield_overrides = {
+        models.CharField: {'widget': TextInput(attrs={'style':'width:515px;'})},
+        models.TextField: {'widget': Textarea(attrs={'style':'width:515px;'})},
+        models.ManyToManyField: {'widget': SelectMultiple(attrs={'style':'width:530px;'})}
+    }
+    
+    prepopulated_fields = {"slug": ("title",)}
 
 class ArticleCategoryAdmin(admin.ModelAdmin):
     list_display = ['name']

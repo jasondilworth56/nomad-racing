@@ -1,0 +1,19 @@
+{% extends 'nomadmain/base.html' %}
+
+{% block title %}{{ article.title }} {% endblock title %}
+
+{% block content %}
+<div class="article">
+    <div class="article-header" style="background-image: url('{% if article.image %} {{article.image.url}} {% endif %}'); background-size: cover; background-position: 50%; min-height: 20%; ">
+        <h1>{{ article.title }}</h1>
+    </div>
+    <div class="article-content">
+        {{ article.content|safe|linebreaks }}
+    </div>
+    <div class="article-meta">
+        {% if article.team_members.all|length != 0 %}In this article: {{ article.team_members.all|join:", " }}{% endif %}
+        
+    </div>
+</div>
+{% endblock content %}
+

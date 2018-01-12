@@ -3,10 +3,10 @@
 {% block title %}{{ article.title }} {% endblock title %}
 
 {% block content %}
-
-<h1>{{ article.title }}</h1>
-<img src="{{ article.image.url }}" alt="{{article.title}}" />
-{{ article.content|escape|linebreaks }}
-
+<h1>NOMAD Articles</h1>
+{% for article in articles %}
+<h2>{{article.title}}</h2>
+<p>{{ article.content|truncatechars:60 }} <a href = "{% url 'article' article.slug %}">Read More</a></p>
+{% endfor %}
 {% endblock content %}
 

@@ -1,0 +1,11 @@
+{% extends 'nomadmain/base.html' %}
+
+{% block title %} Team Members {% endblock title %}
+
+{% block content %}
+<h1>NOMAD Team</h1>
+{% for team_member in team_members %}
+<h2>{{ team_member.get_full_name }}</h2>
+{% endfor %}
+{% endblock content %}
+

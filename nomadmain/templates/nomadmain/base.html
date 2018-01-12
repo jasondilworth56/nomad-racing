@@ -47,8 +47,8 @@
         <div id="news-wrapper">
             {% for article in articles %}
             <div class="news-article">
-                <img src="{{ article.image.url }}" alt="{{ article.title }}" />
-                <h5>{{ article.title }}</h3>
+                <a href = "{% url 'article' article.id %}">{% if article.image %}<img src="{{ article.image.url }}" alt="{{ article.title }}" />{% endif %}
+                <h5 class="news-title">{{ article.title }}</h5></a>
             </div>
             {% endfor %}
         </div>

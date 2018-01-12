@@ -32,11 +32,42 @@ body {
     border-left: 1em solid rgba(255,255,255,0.9); /* bottom, add background color here */
 }
 
+.article {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+   
+}
+
+.article-header {
+    grid-column: 1 / span 12;
+    height: 50vh;
+    position: relative;
+}
+
+.article-header h1 {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+    margin-bottom: 0px;
+    color: #fff;
+    padding: 20px;
+    
+}
+
+.article-content, .article-meta {
+    grid-column: 3 / span 6;
+}
+
+
+
 header, h1 {
     font-family: 'Michroma';
 }
 
 header {
+    position: sticky;
+    top: 0;
     display: grid;
     grid-gap: 20px;
     
@@ -166,9 +197,6 @@ header {
     background-color: rgba(0,0,0,0.5);
 }
 
-.news-article h5 {
-    margin: 0.5em;
-}
 .news-article img {
     width: 100%; 
 }
@@ -178,8 +206,9 @@ header {
     color: #fff;
     position: absolute;
     bottom: 0px;
-    width: calc(100% - 2em);
-    padding: 0 1em; 
+    width: calc(100% - 1em);
+    margin: 0;
+    padding: 0.5em;
 }
 
 #news-container h1 {
