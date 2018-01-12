@@ -40,7 +40,7 @@
         <div id="team-slider" class="homepage-section">
             {% for user in users %}
             <a href = "{% url 'team_member' user.teammember.slug %}" id="tt{{ forloop.counter0 }}" class="team-member-title">{{ user.first_name }} {{user.last_name }}</a>
-            <a href = "{% url 'team_member' user.teammember.slug %}" id="tb{{ forloop.counter0 }}" class="team-member-body"><img src="{% if user.teammember.profile_photo %}{{ user.teammember.profile_photo.url }} {% else %} {% static 'nomadmain/images/square-transparent-micro.png' %}{% endif %}" alt="{{ team_member.first_name }} {{team_member.last_name }}" /></a>
+            <a href = "{% url 'team_member' user.teammember.slug %}" id="tb{{ forloop.counter0 }}" class="team-member-body" style="background: url('{% if user.teammember.profile_photo %}{{ user.teammember.profile_photo.url }} {% else %} {% static 'nomadmain/images/square-transparent-micro.png' %}{% endif %}'); background-position: 50%; background-size: cover;"></a>
             {% endfor %}
         </div>
         <div id="team-right-arrow" class="arrow arrow-right"></div>
