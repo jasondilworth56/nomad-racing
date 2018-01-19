@@ -15,7 +15,7 @@
         <a class="team_member-card" href = "#">
         <!--<a class="team_member-card" href = "{% url 'team_member' team_member.teammember.slug %}">-->
             <div class="team_member-card-body">
-                <img src="{{ team_member.teammember.profile_photo.url }}" alt="{{ team_member.get_full_name }}" />
+                {% if team_member.teammember.profile_photo %}<img src="{{ team_member.teammember.profile_photo.url }}" alt="{{ team_member.get_full_name }}" />{% endif %}
             </div>
             <div class="team_member-card-title">
                 {{ team_member.get_full_name }}
