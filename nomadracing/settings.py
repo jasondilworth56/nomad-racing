@@ -79,20 +79,21 @@ WSGI_APPLICATION = 'nomadracing.wsgi.application'
 
 #print (dj_database_url).config()
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd8i2teivhnbh0e',
-        'USER': 'veteqoravyjgfj',
-        'PASSWORD': '10aa662b7f55a88c0f76256ef161d9691e910c1e7831e60107424e857b075cec',
-        'HOST': 'ec2-184-73-206-155.compute-1.amazonaws.com',
-        'PORT': '5432',
-    }
     # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    #     # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     # 'NAME': 'd8i2teivhnbh0e',
+    #     # 'USER': 'veteqoravyjgfj',
+    #     # 'PASSWORD': '10aa662b7f55a88c0f76256ef161d9691e910c1e7831e60107424e857b075cec',
+    #     # 'HOST': 'ec2-184-73-206-155.compute-1.amazonaws.com',
+    #     # 'PORT': '5432',
     # }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 }
-
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
