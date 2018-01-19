@@ -49,7 +49,7 @@ a {
     
 }
 
-.article-card-body, .team_member-card-body {
+.article-card-body, {
     position: relative;
     grid-row: 1 / span 2;
     grid-column: 1;
@@ -427,7 +427,7 @@ nav a:hover {
     grid-row: 1 / 2;
 }
 
-.team-member-body img, .team_member-card-body img {
+.team-member-body img, {
     max-width: 100%;
 }
 
@@ -435,6 +435,13 @@ nav a:hover {
     grid-column: auto / span 3;
     
     display: grid;
+    grid-template-rows: 7em 2em;
+}
+
+.team_member-card-body {
+    background-size: cover;
+    background-positoin: 50%;
+    
 }
 
 .team_member-card-title {
