@@ -5,6 +5,7 @@ from django.http import HttpResponse
 
 import requests, random
 
+
 TWITCH_CLIENT_ID = "fz19mrp6fjwd6qd7cueailm1qqq6za"
 YOUTUBE_CLIENT_ID = "AIzaSyC8C1rkKpcwRP6yGRRSmHTXxiMP8LSJR3E"
 
@@ -19,6 +20,7 @@ def index(request):
         if user.teammember.is_team():
             users.append(user)
     
+    users = random.shuffle(users)
     articles = Article.objects.all()[:3]
     
     context = { 'users': users, 'live_stream': checkStreams(), 'articles': articles }
