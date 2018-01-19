@@ -69,9 +69,8 @@ class Article(models.Model):
         return self.title
     
     def save(self, *args, **kwargs):
-        if not self.id:
-            # Newly created object, so set slug
-            self.slug = slugify(self.title)
+        # Newly created object, so set slug
+        self.slug = slugify(self.title)
 
         super(Article, self).save(*args, **kwargs)
     

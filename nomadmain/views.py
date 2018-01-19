@@ -26,8 +26,11 @@ def index(request):
 
 def article_list(request):
     articles = Article.objects.all()
-    main_image = articles[0].image
-    context = { 'articles': articles, 'main_image': main_image.url,}
+    if len(articles) > 0:
+        main_image = articles[0].image
+        context = { 'articles': articles, 'main_image': main_image.url,}
+    else:
+        context = {}
     return render(request, 'nomadmain/base_articles.html', context)
 
 def article(request, slug):

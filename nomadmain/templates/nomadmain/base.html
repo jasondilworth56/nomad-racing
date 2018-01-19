@@ -58,6 +58,7 @@
         </div>
     </div>
     {% endif %}
+    {% if articles %}
     <div id="news-container" class="row main-row">
         <h1><a href="{% url 'article_list' %}">LATEST NEWS</a></h1>
         <div id="news-wrapper">
@@ -69,10 +70,11 @@
                 <h5 class="news-title">{{ article.title }}</h5>
                 </a>
             </div>
-            
+            {% empty %}
             {% endfor %}
         </div>
     </div>
+    {% endif %}
     {% endblock content %}
     
     <footer>
