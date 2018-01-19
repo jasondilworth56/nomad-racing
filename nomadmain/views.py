@@ -20,7 +20,7 @@ def index(request):
         if user.teammember.is_team():
             users.append(user)
     
-    users = random.shuffle(users)
+    users = random.shuffle(users, k=len(users))
     
     visible_users = users[:2]
     all_users = users
