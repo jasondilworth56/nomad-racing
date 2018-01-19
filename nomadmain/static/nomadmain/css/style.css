@@ -334,7 +334,7 @@ nav li {
     align-self: stretch;
     text-align: center;
     list-style: none;
-    
+    font-size: 1.5em;
 }
 
 nav a {
@@ -514,6 +514,7 @@ nav a:hover {
     
     .main-row h1, h1 { font-size: 1.5em; }
     
+    
     #team-container .arrow-right {
         grid-column: 12; 
     }
@@ -527,7 +528,7 @@ nav a:hover {
         grid-column: 1;
     }
 
- 
+    
 
 
     
@@ -553,7 +554,10 @@ nav a:hover {
         grid-column: auto / span 12;
     }
     
-    #tt1, #tb1 { display: block; }
+    #team-container {
+        grid-template-columns: 30px repeat(10, 1fr) 30px;
+    }
+    #tt1, #tb1 { display: none; }
     .team-member-title, .team-member-body { grid-column: auto / span 12; }
     
     .logo-text { display: none !important; }
