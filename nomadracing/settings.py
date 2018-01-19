@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os, dj_database_url
+from nomadracing.aws.conf import *
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -32,8 +33,7 @@ ALLOWED_HOSTS = ['127.0.0.1', 'peaceful-stream-21988.herokuapp.com', 'nomadsimra
 
 INSTALLED_APPS = [
     'nomadmain.apps.NomadmainConfig',
-    'tinymce',
-    'martor',
+    'storages',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
