@@ -49,11 +49,11 @@
     <div id="team-container" class="row main-row">
         <div id="team-left-arrow" class="arrow arrow-left"></div>
         <div id="team-slider" class="homepage-section">
-            {% for user in visibile_users %}
+            {% for user in visible_users %}
             <!--<a href = "{% url 'team_member' user.teammember.slug %}" id="tt{{ forloop.counter0 }}" class="team-member-title">{{ user.first_name }} {{user.last_name }}</a>
             <a href = "{% url 'team_member' user.teammember.slug %}" id="tb{{ forloop.counter0 }}" class="team-member-body" style="background: url('{% if user.teammember.profile_photo %}{{ user.teammember.profile_photo.url }} {% else %} {% static 'nomadmain/images/square-transparent-micro.png' %}{% endif %}'); background-position: 50%; background-size: cover;"></a>-->
             <a href = "{% url 'team_list' %}" id="tt{{ forloop.counter0 }}" class="team-member-title">{{ user.first_name }} {{user.last_name }}</a>
-            <a href = "{% url 'team_list' %}" id="tb{{ forloop.counter0 }}" class="team-member-body" style="background: url('{% if user.teammember.profile_photo %}{{ user.teammember.profile_photo.url }} {% else %} {% static 'nomadmain/images/square-transparent-micro.png' %}{% endif %}'); background-position: 50%; background-size: cover;"></a>
+            <a href = "{% url 'team_list' %}" id="tb{{ forloop.counter0 }}" class="team-member-body" style="background: url('{% if user.teammember.profile_photo %}{{ user.teammember.profile_photo.url }} {% else %} {% static 'nomadmain/images/square-background-medium.png' %}{% endif %}'); background-position: 50%; background-size: cover;"></a>
             
             {% endfor %}
         </div>

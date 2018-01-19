@@ -19,9 +19,10 @@ def index(request):
     for user in all_users:
         if user.teammember.is_team():
             users.append(user)
+    print("USERS BEFORE:",users)
     
-    users = random.shuffle(users, k=len(users))
-    
+    random.shuffle(users)
+    print("USERS AFTER:", users)
     visible_users = users[:2]
     all_users = users
     
