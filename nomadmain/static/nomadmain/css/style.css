@@ -555,7 +555,17 @@ nav a:hover {
     }
     
     #team-container {
-        grid-template-columns: 30px repeat(10, 1fr) 30px;
+        grid-template-columns: 30px 1fr 30px;
+        grid-gap: 5px;
+    }
+    #team-slider {
+        grid-column: 2;
+    }
+    #team-title {
+        grid-column: 1 / 3;
+    }
+    #team-container .arrow-right {
+        grid-column: 3;
     }
     #tt1, #tb1 { display: none; }
     .team-member-title, .team-member-body { grid-column: auto / span 12; }

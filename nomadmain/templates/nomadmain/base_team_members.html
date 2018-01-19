@@ -1,3 +1,4 @@
+{% load static %}
 {% extends 'nomadmain/base.html' %}
 
 {% block title %} Team Members {% endblock title %}
@@ -15,7 +16,7 @@
         <a class="team_member-card" href = "#">
         <!--<a class="team_member-card" href = "{% url 'team_member' team_member.teammember.slug %}">-->
             <div class="team_member-card-body">
-                <img src="{{ team_member.teammember.profile_photo.url }}" alt="{{ team_member.get_full_name }}" />
+                <img src="{% static team_member.teammember.profile_photo.url %}" alt="{{ team_member.get_full_name }}" />
             </div>
             <div class="team_member-card-title">
                 {{ team_member.get_full_name }}
