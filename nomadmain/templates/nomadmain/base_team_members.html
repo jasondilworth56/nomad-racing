@@ -3,9 +3,24 @@
 {% block title %} Team Members {% endblock title %}
 
 {% block content %}
-<h1>NOMAD Team</h1>
-{% for team_member in team_members %}
-<h2>{{ team_member.get_full_name }}</h2>
-{% endfor %}
+<div class="content">
+    <div class="content-header">
+        <div id="content-image" style="background-color: #FFD825;"></div>
+        <div id="content-meta-wrapper">
+            <h1>Team Members</h1>
+        </div>
+    </div>
+    <div id="team_member-list">
+        {% for team_member in team_members %}
+        <a class="team_member-card" href = "{% url 'team_member' team_member.teammember.slug %}">
+            <div class="team_member-card-body">
+                <img src="{{ team_member.teammember.profile_photo.url }}" alt="{{ team_member.get_full_name }}" />
+            </div>
+            <div class="team_member-card-title">
+                {{ team_member.get_full_name }}
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
 {% endblock content %}
-

@@ -1,0 +1,3 @@
+{% for page in pages %}
+<a href="{% url 'static_page' page.slug %}"><li>{{ page.title }}</li></a>
+{% endfor %}

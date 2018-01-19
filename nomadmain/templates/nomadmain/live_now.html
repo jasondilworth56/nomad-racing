@@ -1,0 +1,34 @@
+{% extends 'nomadmain/base.html' %}
+{% load nomad_tags %}
+
+{% block title %} NOMAD Live {% endblock title %}
+
+{% block content %}
+<div class="content">
+    <div class="content-header">
+        <div id="content-image" style="background-color: #FFD825; background-size: cover; background-position: 50%; "></div>
+        <div id="content-meta-wrapper">
+           
+            <h1>NOMAD Live</h1>
+            <div id="content-meta-inner"></div>
+        </div>
+        {% social_links %}
+        
+    </div>
+    <div class="article-content">
+        <p>If any of our team are currently live, you'll see one of their streams at random below. Stay tuned for more features coming soon.</p>
+        {% if live_stream != None %}
+        <div class="videoWrapper">
+            <iframe src="{{live_stream.embed}}" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
+        </div>
+        {% else %}
+        <p><em>No team members currently live.</em></p>
+        {% endif %}
+    </div>
+    <div class="article-meta">
+        
+        
+    </div>
+</div>
+{% endblock content %}
+

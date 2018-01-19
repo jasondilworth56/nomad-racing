@@ -1,5 +1,5 @@
 {% extends 'nomadmain/base.html' %}
-
+{% load nomad_tags %}
 {% block title %}{{ article.title }} {% endblock title %}
 
 {% block content %}
@@ -16,11 +16,7 @@
             {% if article.team_members.all|length != 0 %}<p id="includes_team" class="article-meta"><strong>In this article</strong>: {{ article.team_members.all|join:", " }}</p>{% endif %}
              </div>
         </div>
-        <div id="social-block">
-            <div class="share-fb"></div>
-            <div class="share-twitter"></div>
-            <div class="share-instagram"></div>
-        </div>
+        {% social_links %}
         
     </div>
     <div class="article-content">

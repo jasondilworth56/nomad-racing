@@ -1,4 +1,5 @@
 {% load static %}
+{% load nomad_tags %}
 
 <html>
 <head>
@@ -20,17 +21,18 @@
             <ul>
                 <a href="{% url 'index' %}"><li>Home</li></a>
                 <a href="{% url 'team_list' %}"><li>Team</li></a>
-                <a href="{% url 'result_list' %}"><li>Results</li></a>
+                <!--<a href="{% url 'result_list' %}"><li>Results</li></a>-->
                 <a href="{% url 'article_list' %}"><li>Blog</li></a>
                 <a href="{% url 'live_now' %}"><li>Live Now</li></a>
-                <a href="{% url 'events' %}"><li>Events</li></a>
+                <!--<a href="{% url 'events' %}"><li>Events</li></a>-->
+                {% static_page_list %}
             </ul>
         </nav>
     </header>
 
     {% block content %}
     <div id="hero-container" class="row hero-row">
-        <video poster="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/polina.jpg" id="bgvid" playsinline autoplay muted loop>
+        <video poster="{% static 'nomadmain/images/static-background.png' %}" id="bgvid" playsinline autoplay muted loop>
             <source src="{% static 'nomadmain/images/home-background.webm' %}" type="video/webm">
         </video>
         <div id="hero-message" class="homepage-section"><h1>WE<br> ARE<br> NOMAD</h1></div>
@@ -75,15 +77,25 @@
     
     <footer>
         <div class="logo">
-            <a href="{% url 'index' %}"><img src="{% static 'nomadmain/images/square-transparent-micro.png' %}" class="logo-image">
-            <span class="logo-text"><strong>&nbsp;NOMAD</strong> <em>Sim Racing</em></span></a>
+            <a href="{% url 'index' %}">
+                <img src="{% static 'nomadmain/images/square-transparent-micro.png' %}" class="logo-image">
+                <span class="logo-text"><strong>&nbsp;NOMAD</strong> <em>Sim Racing</em></span>
+            </a>
         </div>
+        
     </footer>
     
     <script>
+        function gotoURL(url) {
+            window.location.href = url;
+        }
         $( document ).ready(function() {
             $('#nav-toggle').click(function() {
                 $('nav').toggle();
+            });
+            
+            $('.arrow').click(function() {
+                window.location.href = "{% url 'team_list' %}";
             });
         });
     </script>

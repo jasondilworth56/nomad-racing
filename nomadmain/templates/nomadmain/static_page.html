@@ -1,0 +1,29 @@
+{% extends 'nomadmain/base.html' %}
+{% load nomad_tags %}
+
+{% block title %}{{ page.title }} {% endblock title %}
+
+{% block content %}
+<div class="content">
+    <div class="content-header">
+        <div id="content-image" style="background-image: url('{% if page.featured_image %} {{ page.featured_image.url }} {% endif %}'); background-color: #FFD825; background-size: cover; background-position: 50%; "></div>
+        <div id="content-meta-wrapper">
+            
+                
+           
+            <h1>{{ page.title }}</h1>
+            <div id="content-meta-inner"></div>
+        </div>
+        {% social_links %}
+        
+    </div>
+    <div class="article-content">
+        {{ page.content|safe|linebreaks }}
+    </div>
+    <div class="article-meta">
+        
+        
+    </div>
+</div>
+{% endblock content %}
+

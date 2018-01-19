@@ -10,7 +10,8 @@ urlpatterns = [
     re_path(r'^team/(?P<slug>[-\w]+)/$', views.team_member, name='team_member'),
     path('results/', views.result_list, name="result_list"),
     path('live/', views.live_now, name="live_now"),
-    path('events/', views.events, name="events")
+    path('events/', views.events, name="events"),
+    re_path(r'^pages/(?P<slug>[-\w]+)/$', views.static_page, name='static_page'),
     #path('blog/<int:article_id>/', views.article, name='article')
 ]
 

@@ -91,3 +91,18 @@ class Progress(models.Model):
     team_member = models.ForeignKey(TeamMember, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now=True)
     iRating = models.IntegerField()
+
+# A static page model for CRM usage
+class StaticPage(models.Model):
+    slug = models.SlugField(max_length=60, blank=True)
+    title = models.CharField(max_length=255)
+    featured_image = models.ImageField(null=True, blank=True)
+    content = models.TextField()
+    
+    def __str__(self):
+        return self.title
+    
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.slug = slugify(self.title)
+        super (StaticPage, self).save(*args, **kwargs)

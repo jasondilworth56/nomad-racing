@@ -1,11 +1,11 @@
 from django.contrib import admin
-from .models import TeamMember, Article, Media, Result, Progress, ArticleCategory
+from .models import TeamMember, Article, Media, Result, Progress, ArticleCategory, StaticPage
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 from django.forms import TextInput, Textarea, SelectMultiple
 from django.db import models
 
-admin.site.register([Media, Result])
+admin.site.register([Media, Result, StaticPage])
 
 # Register your models here.
    

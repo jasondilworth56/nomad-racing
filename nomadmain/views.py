@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from nomadmain.models import Article, Media, TeamMember
+from nomadmain.models import Article, Media, TeamMember, StaticPage
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 
@@ -53,10 +53,16 @@ def events(request):
     return HttpResponse("Events")
 
 def live_now(request):
-    return HttpResponse("Live Now")
+    context = { 'live_stream' : checkStreams() }
+    return render(request, 'nomadmain/live_now.html', context)
 
 def result_list(request):
     return HttpResponse("Results")
+
+def static_page(request, slug):
+    page = get_object_or_404(StaticPage, slug=slug)
+    context = { 'page' : page }
+    return render(request, 'nomadmain/static_page.html', context)
         
 
 def checkStreams():
