@@ -21,9 +21,13 @@ def index(request):
             users.append(user)
     
     users = random.shuffle(users)
+    
+    visible_users = users[:2]
+    all_users = users
+    
     articles = Article.objects.all()[:3]
     
-    context = { 'users': users, 'live_stream': checkStreams(), 'articles': articles }
+    context = { 'visible_users': visible_users, 'all_users': all_users, 'live_stream': checkStreams(), 'articles': articles }
     return render(request, 'nomadmain/base.html', context)
 
 def article_list(request):
