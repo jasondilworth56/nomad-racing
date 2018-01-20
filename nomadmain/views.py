@@ -51,7 +51,7 @@ def team_list(request):
     for user in users:
         if user.teammember.team_member == True:
             team_members.append(user)
-    
+    random.shuffle(team_members)
     context = { 'team_members': team_members }
     return render(request, 'nomadmain/base_team_members.html', context)
 
