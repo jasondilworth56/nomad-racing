@@ -5,6 +5,9 @@ from django.contrib.auth.models import User
 from django.forms import TextInput, Textarea, SelectMultiple
 from django.db import models
 
+admin.site.site_header = admin.site.site_title = "NOMAD Sim Racing"
+admin.site.index_title = ""
+
 admin.site.register([Media, Result, StaticPage])
 
 # Register your models here.
