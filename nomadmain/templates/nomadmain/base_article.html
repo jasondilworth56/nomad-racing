@@ -30,5 +30,5 @@
 {% endblock content %}
 
 {% block og_title %}{{ article.title }}{% endblock %}
-{% block og_description %}{{ article.content|truncate:120 }}{% endblock %}
+{% block og_description %}{{ article.content|truncatechars:120 }}{% endblock %}
 {% if article.image %}{% block og_image %}{{ article.image.url }}{% endblock %}{% endif %}
